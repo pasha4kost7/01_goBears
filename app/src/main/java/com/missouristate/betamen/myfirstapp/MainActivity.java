@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +26,16 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                TextView textView = findViewById(R.id.tv_1);        // Reference to a textView we find it by our ID
+                String stringValue = textView.getText().toString();  // uses int textView and puts into a string
+                int origValue = Integer.parseInt(stringValue);      //parses  string back to int
+                int newValue = MyWorker.doubleMyValue(origValue);   // goes to a new class MyWorker and do the job of multiplication.
+
+                textView.setText(Integer.toString(newValue));       // use setText to set value back. We need to convert it to String so we transpose it
+
+
+
+                Snackbar.make(view, "Added Values " + origValue + " plus " + origValue, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
